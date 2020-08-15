@@ -1,20 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Insert game urls</title>
-</head>
-<body bgcolor="000000">
-	<h1 style="font-family:Tahoma;color:#ffa500;">This one's all up to you, just insert a link to a hosted zip file(I only have about 4gb so you host it yourself, your fileserver MUST accept CORS requests)</h1>
-	<input type="text" id="dminp" value="domain here" />
-  	<input type="text" id="fname" value="name of exe or com file to run here(case sensitive)" />
-  	<button onclick="h()">Load</button>
-   <script type="text/javascript">
-   	function h(){
-   		var f = encodeURIComponent(document.querySelector("#dminp").value);
-   		var n = encodeURIComponent(document.querySelector("#fname").value);
-   		console.log(f+","+n);
-   		window.location.href = './diy.html?ftl='+f+'&fl='+n;
-   	}
-   	</script>
-</body>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>DIY</title>
+    <style type="text/css">
+      .dosbox-container { width: 640px; height: 400px; }
+      .dosbox-container > .dosbox-overlay { background: url(../img/DIY.jpg);background-size:cover;}
+    </style>
+  </head>
+  <body bgcolor="000000" style="font-family:Tahoma;color:#ffa500;">
+   <div>
+    <canvas id="dosbox"></canvas>
+   </div><br/>
+   <button onclick="ci.fullscreen();" style="background: none; border: none;"><img src="../img/large.gif"/></button><br>
+   <h3>This one's all up to you, just insert a link to a hosted zip file(your fileserver MUST accept CORS requests)</h3>
+	<p>link to zip file containing game: </p><input type="text" id="dminp" value="https://jakesandbox.com/programs/fridgegames/wolf/wolf.zip" /><br>
+  	<p>name of exe or com file to run here(case sensitive): </p><input type="text" id="fname" value="INSTALL.EXE" /><br>
+  	<p>Dosbox Config: </p>
+   <textarea id="dbset" style="margin: 0px; width: 315px; height: 181px;">
+   {
+        wdosboxUrl: 'https://js-dos.com/6.22/current/wdosbox.js',
+        core:'normal',
+        cputype:'auto',
+        cycles:7000,
+        cycleup:200,
+        cycledown:200,
+        autolock: false,
+    }
+   </textarea><br>
+   <button onclick="boot(document.getElementById('dmnip'),document.getElementById('fname'),document.getElementById('dbset'))">Boot</button>
+   <script src="https://js-dos.com/6.22/current/js-dos.js"></script>   
+   <script>
+   function boot(url,exe,dbse){
+    Dos(document.getElementById("dosbox"), dbse).ready(function (fs, main) {
+      fs.extract(url).then(function () {
+        main([exe]).then(function (ci) {
+            window.ci = ci;
+            DosController.Qwerty(ci.getParentDiv(), ci.getKeyEventConsumer());
+        });
+      });
+    });
+    }
+  </script>
+  </body>
 </html>

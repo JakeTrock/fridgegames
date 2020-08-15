@@ -9,22 +9,29 @@
     </style>
   </head>
   <body bgcolor="000000">
-    <div id="dosbox"></div>
+    <div>
+    <canvas id="dosbox"></canvas>
+    </div>
     <br/>
-    <button onclick="dosbox.requestFullScreen();" style="background: none; border: none;"><img src="../img/large.gif"/></button>
+    <button onclick="ci.fullscreen();" style="background: none; border: none;"><img src="../img/large.gif"/></button>
     <h1 style="font-family:Tahoma;color:#ffa500;">Instructions for dinguses:</h1>
     <p style="font-family:Tahoma;color:#ffa500;">Hit c then hit enter and then type y and wait... hit tab then enter then wait some more... then type quake, hit tab and then hit enter.</p>
-   <script type="text/javascript" src="https://js-dos.com/cdn/js-dos-api.js"></script>
-    <script type="text/javascript">
-      var dosbox = new Dosbox({
-        id: "dosbox",
-        onload: function (dosbox) {
-          dosbox.run("quake1.zip", "deice.exe");
-        },
-        onrun: function (dosbox, app) {
-          console.log("App '" + app + "' is running");
-        }
+   <script src="https://js-dos.com/6.22/current/js-dos.js"></script>  
+    <script>
+    Dos(document.getElementById("dosbox"), {
+        wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+        core:'dynamic',
+        cputype:'auto',
+        cycles:'auto',
+        cycleup:1000,
+        cycledown:1000
+    }).ready(function (fs, main) {
+      fs.extract("quake1.zip").then(function () {
+        main(["deice.exe"]).then(function (ci) {
+            window.ci = ci;
+        });
       });
-    </script>
+    });
+  </script>
   </body>
 </html>

@@ -2,29 +2,36 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Doom</title>
+    <title>Quake 1</title>
     <style type="text/css">
       .dosbox-container { width: 640px; height: 400px; }
       .dosbox-container > .dosbox-overlay { background: url(../img/DOOM1.jpg);background-size:cover;}
     </style>
   </head>
   <body bgcolor="000000">
-    <div id="dosbox"></div>
+    <div>
+    <canvas id="dosbox"></canvas>
+    </div>
     <br/>
-    <button onclick="dosbox.requestFullScreen();" style="background: none; border: none;"><img src="../img/large.gif"/></button>
+    <button onclick="ci.fullscreen();" style="background: none; border: none;"><img src="../img/large.gif"/></button>
     <h1 style="font-family:Tahoma;color:#ffa500;">Instructions for dinguses:</h1>
     <p style="font-family:Tahoma;color:#ffa500;">Type c then enter then y hit tab then enter and wait... then type doom then tab and finally hit enter.</p>
-   <script type="text/javascript" src="https://js-dos.com/cdn/js-dos-api.js"></script>
-    <script type="text/javascript">
-      var dosbox = new Dosbox({
-        id: "dosbox",
-        onload: function (dosbox) {
-          dosbox.run("doom.zip", "DEICE.EXE");
-        },
-        onrun: function (dosbox, app) {
-          console.log("App '" + app + "' is running");
-        }
+   <script src="https://js-dos.com/6.22/current/js-dos.js"></script>  
+    <script>
+    Dos(document.getElementById("dosbox"), {
+        wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+        core:'dynamic',
+        cputype:'auto',
+        cycles:'auto',
+        cycleup:1000,
+        cycledown:1000
+    }).ready(function (fs, main) {
+      fs.extract("doom.zip").then(function () {
+        main(["DEICE.EXE"]).then(function (ci) {
+            window.ci = ci;
+        });
       });
-    </script>
+    });
+  </script>
   </body>
 </html>

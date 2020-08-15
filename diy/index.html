@@ -13,6 +13,13 @@
     <canvas id="dosbox"></canvas>
    </div><br/>
    <button onclick="ci.fullscreen();" style="background: none; border: none;"><img src="../img/large.gif"/></button><br>
+   
+   <div style="border: 2px solid white;width:20%">
+    &emsp;&emsp;&emsp;<button width="100px" onclick="ci.simulateKeyPress(38);">&nbsp;up&nbsp;</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button onclick="ci.simulateKeyPress(17);">fire(ctrl)</button><br>
+    <button onclick="ci.simulateKeyPress(37);">left</button><button onclick="ci.simulateKeyPress(18);">alt(strafe)</button><button onclick="ci.simulateKeyPress(39);">right</button><br>
+    &emsp;&emsp;&emsp;<button onclick="ci.simulateKeyPress(40);">down</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button onclick="ci.simulateKeyPress(32);">use(space)</button><br>
+    </div>
+   
    <h3>This one's all up to you, just insert a link to a hosted zip file(your fileserver MUST accept CORS requests)</h3>
 	<p>link to zip file containing game: </p><input type="text" id="dminp" value="https://jakesandbox.com/programs/fridgegames/wolf/wolf.zip" /><br>
   	<p>name of exe or com file to run here(case sensitive): </p><input type="text" id="fname" value="INSTALL.EXE" /><br>

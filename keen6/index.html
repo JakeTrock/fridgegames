@@ -24,15 +24,14 @@
   <br />
   <button onclick="ci.fullscreen();" style="background: none; border: none;"><img src="../img/large.gif" /></button>
   <div style="border: 2px solid white;width:20%">
-    &emsp;&emsp;&emsp;<button width="100px" onclick="ci.simulateKeyPress(38);">&nbsp;up&nbsp;</button>
+    &emsp;<button width="100px" onclick="ci.simulateKeyPress(38);">&nbsp;up&nbsp;</button>
     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
     <button onclick="ci.simulateKeyPress(18);">alt</button><br>
     <button onclick="ci.simulateKeyPress(37);">left</button>
-    <button onclick="ci.simulateKeyPress(32);">space</button>
-    <button onclick="ci.simulateKeyPress(39);">right</button><br>
-
+    <button onclick="ci.simulateKeyPress(39);">right</button>
     &emsp;&emsp;&emsp;
-    <button onclick="ci.simulateKeyPress(40);">down</button>
+    <button onclick="ci.simulateKeyPress(32);">space</button><br>
+    &emsp;<button onclick="ci.simulateKeyPress(40);">down</button>
     &emsp;&emsp;&emsp;
     <button onclick="ci.simulateKeyPress(17);">control</button><br>
   </div>
@@ -42,9 +41,8 @@ Right arrow key - Move right
 
 Ctrl - Jump(The longer you hold, the higher you'll jump)/Enter a level
 Alt - Toggle Pogo mode on
-Ctrl+Alt - Fire Raygun
+Space - Fire Raygun
 
-Space bar - Status screen
 F2 - Toggle sound on or off
 Esc - Exit game.
   </pre>
@@ -59,24 +57,14 @@ Esc - Exit game.
       cycledown: 200,
       autolock: false,
     }).ready(function (fs, main) {
-      fs.extract("keen1.zip").then(function () {
-        main(["INSTALL.EXE"]).then(function (ci) {
+      fs.extract("keen6.zip").then(function () {
+        main(["K6DEMO.EXE"]).then(function (ci) {
           window.ci = ci;
-          ci.simulateKeyPress(13);
-          setTimeout(function () {
-            ci.simulateKeyPress(13);
-            setTimeout(function () {
-              ci.simulateKeyPress(13);
-              setTimeout(function () {
-                ci.simulateKeyPress(13);
-                setTimeout(function () {
-                  ci.simulateKeyPress(75);
-                  ci.simulateKeyPress(9);
-                  ci.simulateKeyPress(13);
-                }, 4000);
-              }, 1000);
-            }, 1000);
-          }, 1000);
+          // setTimeout(function () {
+          //   ci.simulateKeyPress(75);
+          //   ci.simulateKeyPress(9);
+          //   ci.simulateKeyPress(13);
+          // }, 1000);
         });
       });
     });

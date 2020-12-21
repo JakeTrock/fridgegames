@@ -60,11 +60,6 @@ Esc - Exit game.
       fs.extract("keen6.zip").then(function () {
         main(["K6DEMO.EXE"]).then(function (ci) {
           window.ci = ci;
-          // setTimeout(function () {
-          //   ci.simulateKeyPress(75);
-          //   ci.simulateKeyPress(9);
-          //   ci.simulateKeyPress(13);
-          // }, 1000);
         });
       });
     });

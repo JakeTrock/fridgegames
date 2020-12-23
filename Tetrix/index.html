@@ -30,8 +30,8 @@
         cycleup:1000,
         cycledown:1000
     }).ready(function (fs, main) {
-      fs.extract("tetrix.zip").then(function () {
-        main(["DEICE.EXE"]).then(function (ci) {
+      fs.extract("tetrix-box.zip").then(function () {
+        main(["TETRIX.BAT"]).then(function (ci) {
             window.ci = ci;
             ci.simulateKeyPress(67);
             ci.simulateKeyPress(13);
